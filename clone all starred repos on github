@@ -1,0 +1,25 @@
+Need jq (https://stedolan.github.io/jq/)
+
+curl https://api.github.com/users/<user>/starred |
+jq -r '.[].html_url' |
+while read rp
+do
+  git clone $rp
+done
+
+If you dont want to use jq you can replace with this ugly awk line
+
+awk '/^ {4}"html_url"/&&$0=$4' FS='"' |
+
+----------------------------------------
+
+// To not be limited by GitHub API limits
+
+$ curl -i 'https://api.github.com/users/whatever?client_id=xxxx&client_secret=yyyy'
+
+HTTP/1.1 200 OK
+Date: Mon, 01 Jul 2013 17:27:06 GMT
+Status: 200 OK
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4966
+X-RateLimit-Reset: 1372700873

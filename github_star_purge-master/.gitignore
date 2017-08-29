@@ -1,0 +1,11 @@
+.cache
+.eggs
+*.egg-info/
+*.pyc
+*.pyo
+*.swp
+dist/
+build/
+docs/_build/
+doc/site/
+__pycache__/

@@ -1,0 +1,56 @@
+address:http://mm.taobao.com/json/request_top_list.htm
+
+# html:<img src="http://picture address.com">
+example：<img src="http://www.chinabaiker.com/template/dfsj_skyline/dfsj_imgs/logoo.png">
+
+#!/usr/bin/python
+import requests
+from bs4 import BeautifulSoup   
+url = requests.get("http://mm.taobao.com/json/request_top_list.htm")
+body = BeautifulSoup(url.text)
+for x in body.findAll("img"):
+    print x["src"]
+
+the requests:
+http://img07.taobaocdn.com/sns_logo/i7/TB18D3rGVXXXXXvXVXXSutbFXXX.jpg_60x60.jpg
+http://a.tbcdn.cn/kissy/1.0.0/build/imglazyload/spaceball.gif
+http://img05.taobaocdn.com/sns_logo/i5/TB1FM8wGFXXXXb1XXXXSutbFXXX.jpg_60x60.jpg
+http://a.tbcdn.cn/kissy/1.0.0/build/imglazyload/spaceball.gif
+http://img08.taobaocdn.com/sns_logo/i8/TB1qi5WGVXXXXXxXFXXSutbFXXX.jpg_60x60.jpg
+http://a.tbcdn.cn/kissy/1.0.0/build/imglazyload/spaceball.gif
+http://img01.taobaocdn.com/sns_logo/i1/TB1gxkiGVXXXXXZXpXXSutbFXXX.jpg_60x60.jpg
+http://a.tbcdn.cn/kissy/1.0.0/build/imglazyload/spaceball.gif
+http://img01.taobaocdn.com/sns_logo/i1/TB1P980FVXXXXXQXFXXSutbFXXX.jpg_60x60.jpg
+http://a.tbcdn.cn/kissy/1.0.0/build/imglazyload/spaceball.gif
+http://img04.taobaocdn.com/sns_logo/i4/TB1nxAbGFXXXXa3aXXXSutbFXXX.jpg_60x60.jpg
+http://a.tbcdn.cn/kissy/1.0.0/build/imglazyload/spaceball.gif
+http://img08.taobaocdn.com/sns_logo/i8/TB1bU.UFFXXXXc0XpXXSutbFXXX.jpg_60x60.jpg
+http://a.tbcdn.cn/kissy/1.0.0/build/imglazyload/spaceball.gif
+http://img08.taobaocdn.com/sns_logo/i8/TB1HmB7GXXXXXbHXFXXSutbFXXX.jpg_60x60.jpg
+http://a.tbcdn.cn/kissy/1.0.0/build/imglazyload/spaceball.gif
+http://img03.taobaocdn.com/sns_logo/i3/TB1CQbiGVXXXXaYXFXXSutbFXXX.jpg_60x60.jpg
+http://a.tbcdn.cn/kissy/1.0.0/build/imglazyload/spaceball.gif
+http://img07.taobaocdn.com/sns_logo/i7/TB1QPszGXXXXXbSXVXXSutbFXXX.jpg_60x60.jpg
+http://a.tbcdn.cn/kissy/1.0.0/build/imglazyload/spaceball.gif
+
+
+of course,you  can down this pictures:
+
+#!/usr/bin/python
+import requests,urllib
+from bs4 import BeautifulSoup
+i = 0
+url = requests.get("http://mm.taobao.com/json/request_top_list.htm")
+body = BeautifulSoup(url.text)
+for x in body.findAll("img"):
+    print x["src"]
+    urllib.urlretrieve(x["src"],str(i) + ".jpg")
+    i += 1
+
+
+
+careful:
+BeautifulSoup≠beautifulsoup
+findAll≠findall
+from bs4 import BeautifulSoup≠import BeautifulSoup from bs4
+

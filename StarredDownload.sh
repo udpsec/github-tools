@@ -1,0 +1,1 @@
+USER=Umuril; wget -qO- "https://api.github.com/users/$USER/starred?per_page=1000" | grep -o 'git@[^"]*' | xargs -P4 -L1 git clone

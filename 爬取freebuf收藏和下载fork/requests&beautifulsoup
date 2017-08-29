@@ -1,0 +1,6 @@
+import requests
+from bs4 import BeautifulSoup
+url = requests.get("http://www.chinabaiker.com")
+body = BeautifulSoup(url.text)
+print body
+print body.title.text

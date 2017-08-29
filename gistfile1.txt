@@ -1,0 +1,10 @@
+#!/bin/bash -x
+
+git_user="name_of_git_user"
+
+for i in `curl 'https://api.github.com/users/'$git_user'/starred?page=1&per_page=150' |  grep git_url | cut -d ":" -f 2,3| cut -d '"' -f 2`;do
+ git clone $i
+done
+
+
+

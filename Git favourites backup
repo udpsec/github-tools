@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+
+from git import Repo
+import requests
+import json
+import multiprocessing
+import os
+
+try:
+    cpus = multiprocessing.cpu_count()
+except NotImplementedError:
+    cpus = 2
+
+starred_repos = json.loads(requests.get('https://api.github.com/users/kasisnu/starred?page=1&per_page=10000').text)
+
+def my_funky_clone(url):
+	dir_name = url.split('/')[-1][:-4]
+	try:
+		os.mkdir(dir_name)
+		Repo.clone_from(url,dir_name)
+	except:
+		pass
+
+pool = multiprocessing.Pool(processes=cpus)
+pool.map(my_funky_clone, [i['clone_url'] for i in starred_repos])

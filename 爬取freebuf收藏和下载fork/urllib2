@@ -1,0 +1,7 @@
+urllib2获取网页数据
+
+以下是获取url最简单的方式：
+
+import urllib2
+response = urllib2.urlopen('http://python.org/')
+html = response.read()
